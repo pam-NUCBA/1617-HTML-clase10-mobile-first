@@ -42,7 +42,9 @@ h1 {
     font-size: 1.7em;
 }
 
-p, li, button {
+p,
+li,
+button {
     font-family: 'Exo 2', sans-serif;
 }
 
@@ -87,6 +89,11 @@ header a {
     list-style: none;
 }
 
+/* nav oculta */
+.inlineList {
+    display: none;
+}
+
 /* cuerpo */
 .description {
     margin-top: 5%;
@@ -116,8 +123,41 @@ main img {
     box-shadow: 4px 4px 6px 1px var(--main-dark-grey);
 }
 
-.imgContainer {
+.imgContainer,
+.newArrivalContainer {
     position: relative;
+}
+
+.newArrivalContainer {
+    z-index: 10;
+}
+
+.newArrivalContainer .sticker {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    background: url('./assets/sticker.png') no-repeat;
+    background-size: 75px;
+    filter: hue-rotate(205deg);
+    top: -35px;
+    right: -160px;
+    animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.newArrivalContainer .msg {
+    color: var(--main-light-grey);
+    text-align: center;
+    font-family: 'Exo 2';
+    font-size: 1.5em;
+    width: 75px;
+    position: absolute;
+    margin: -14px 0 0 93px
 }
 
 .imgContainer .heart {
@@ -140,14 +180,120 @@ main img {
     font-weight: 800;
 }
 
-.product button:hover {
-    background-color: var(--main-orange-shade);
+.product button {
+    animation: outColorHover 1s ease forwards 1;
 }
 
-.product button a, 
+.product button:hover {
+    animation: inColorHover 1s ease forwards 1;
+}
+
+@keyframes inColorHover {
+    from {
+        background-color:  var(--main-orange);
+    }
+    to {
+        background-color: var(--main-orange-shade);
+    }
+}
+
+@keyframes outColorHover {
+    from {
+        background-color: var(--main-orange-shade);
+    }
+    to {
+        background-color:  var(--main-orange);
+    }
+}
+
+.product button a,
 .product button a:visited {
     text-decoration: none;
     color: var(--main-light-grey);
 }
 
 /* mediaqueries van al finallllll */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    i {
+        font-size: 2em;
+    }
+
+    p,
+    li {
+        font-size: 1.5em;
+    }
+
+    .product button {
+        padding: 3% 14%;
+        font-size: 2em;
+    }
+
+    main img {
+        height: 300px;
+    }
+
+    main img:hover {
+        height: 320px;
+    }
+}
+
+@media (min-width: 1024px) {
+    main {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .product {
+        width: 40%;
+        margin: 4% 0;
+    }
+
+    main img {
+        height: 200px;
+    }
+
+    main img:hover {
+        height: 220px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .inlineList {
+        margin-top: 4%;
+        display: block;
+        text-align: center;
+    }
+
+    .inlineList li {
+        display: inline;
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1480px) {
+    h1 {
+        font-size: 5em;
+    }
+
+    .inlineList li {
+        font-size: 2.5em;
+    }
+
+    .product {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .product {
+        width: 18%;
+    }
+}
